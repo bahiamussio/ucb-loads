@@ -86,7 +86,7 @@ h1{font-size:24px;font-weight:500;margin-bottom:4px}
           <label>Your name</label><input type="text" placeholder="e.g. Sarah">
           <label>Comment (optional)</label><textarea placeholder="Customer info, quantity needed..."></textarea>
           <div class="form-row">
-            <button class="btn-send" onclick="sendClaim(this,'AMG Environmental','Baytown, TX','14','8004')">Send claim</button>
+            <button class="btn-send" onclick="sendClaim(this,'AMG Environmental','Baytown, TX','14','8004','https://loops.usedcardboardboxes.com/manage_box_b2bloop.php?id=7164&proc=View&')">Send claim</button>
             <button class="btn-cancel" onclick="cancelForm(this)">Cancel</button>
           </div>
           <div class="msg"></div>
@@ -104,7 +104,7 @@ h1{font-size:24px;font-weight:500;margin-bottom:4px}
           <label>Your name</label><input type="text" placeholder="e.g. Sarah">
           <label>Comment (optional)</label><textarea placeholder="Customer info, quantity needed..."></textarea>
           <div class="form-row">
-            <button class="btn-send" onclick="sendClaim(this,'AMG Environmental Solutions','Sealy, TX','14.50','7782')">Send claim</button>
+            <button class="btn-send" onclick="sendClaim(this,'AMG Environmental Solutions','Sealy, TX','14.50','7782','https://loops.usedcardboardboxes.com/manage_box_b2bloop.php?id=6942&proc=Edit&')">Send claim</button>
             <button class="btn-cancel" onclick="cancelForm(this)">Cancel</button>
           </div>
           <div class="msg"></div>
@@ -122,7 +122,7 @@ h1{font-size:24px;font-weight:500;margin-bottom:4px}
           <label>Your name</label><input type="text" placeholder="e.g. Sarah">
           <label>Comment (optional)</label><textarea placeholder="Customer info, quantity needed..."></textarea>
           <div class="form-row">
-            <button class="btn-send" onclick="sendClaim(this,'G3 Scrap Metals','Weslaco, TX','17','7957')">Send claim</button>
+            <button class="btn-send" onclick="sendClaim(this,'G3 Scrap Metals','Weslaco, TX','17','7957','https://loops.usedcardboardboxes.com/manage_box_b2bloop.php?id=7117&proc=View&')">Send claim</button>
             <button class="btn-cancel" onclick="cancelForm(this)">Cancel</button>
           </div>
           <div class="msg"></div>
@@ -140,7 +140,7 @@ h1{font-size:24px;font-weight:500;margin-bottom:4px}
           <label>Your name</label><input type="text" placeholder="e.g. Sarah">
           <label>Comment (optional)</label><textarea placeholder="Customer info, quantity needed..."></textarea>
           <div class="form-row">
-            <button class="btn-send" onclick="sendClaim(this,'Scrap Mgmt Houston','Houston, TX','14.50','7946')">Send claim</button>
+            <button class="btn-send" onclick="sendClaim(this,'Scrap Mgmt Houston','Houston, TX','14.50','7946','https://loops.usedcardboardboxes.com/manage_box_b2bloop.php?id=7106&proc=View&')">Send claim</button>
             <button class="btn-cancel" onclick="cancelForm(this)">Cancel</button>
           </div>
           <div class="msg"></div>
@@ -165,7 +165,7 @@ h1{font-size:24px;font-weight:500;margin-bottom:4px}
           <label>Your name</label><input type="text" placeholder="e.g. Sarah">
           <label>Comment (optional)</label><textarea placeholder="Customer info, quantity needed..."></textarea>
           <div class="form-row">
-            <button class="btn-send" onclick="sendClaim(this,'Com2 Recycling','Carol Stream, IL','11','5094')">Send claim</button>
+            <button class="btn-send" onclick="sendClaim(this,'Com2 Recycling','Carol Stream, IL','11','5094','https://loops.usedcardboardboxes.com/manage_box_b2bloop.php?id=4254&proc=Edit&')">Send claim</button>
             <button class="btn-cancel" onclick="cancelForm(this)">Cancel</button>
           </div>
           <div class="msg"></div>
@@ -190,7 +190,7 @@ h1{font-size:24px;font-weight:500;margin-bottom:4px}
           <label>Your name</label><input type="text" placeholder="e.g. Sarah">
           <label>Comment (optional)</label><textarea placeholder="Customer info, quantity needed..."></textarea>
           <div class="form-row">
-            <button class="btn-send" onclick="sendClaim(this,'GreenGate Fresh','Salinas, CA','9','7873')">Send claim</button>
+            <button class="btn-send" onclick="sendClaim(this,'GreenGate Fresh','Salinas, CA','9','7873','https://loops.usedcardboardboxes.com/manage_box_b2bloop.php?id=7033&proc=View&')">Send claim</button>
             <button class="btn-cancel" onclick="cancelForm(this)">Cancel</button>
           </div>
           <div class="msg"></div>
@@ -208,7 +208,7 @@ h1{font-size:24px;font-weight:500;margin-bottom:4px}
           <label>Your name</label><input type="text" placeholder="e.g. Sarah">
           <label>Comment (optional)</label><textarea placeholder="Customer info, quantity needed..."></textarea>
           <div class="form-row">
-            <button class="btn-send" onclick="sendClaim(this,'Mesa Verde','McFarland, CA','9.25','6284')">Send claim</button>
+            <button class="btn-send" onclick="sendClaim(this,'Mesa Verde','McFarland, CA','9.25','6284','https://loops.usedcardboardboxes.com/manage_box_b2bloop.php?id=5444&proc=Edit')">Send claim</button>
             <button class="btn-cancel" onclick="cancelForm(this)">Cancel</button>
           </div>
           <div class="msg"></div>
@@ -239,7 +239,7 @@ function cancelForm(btn) {
   btn.closest('.form-overlay').classList.remove('open');
 }
 
-async function sendClaim(sendBtn, load, location, fob, loopsId) {
+async function sendClaim(sendBtn, load, location, fob, loopsId, loopsUrl) {
   const form      = sendBtn.closest('.form-overlay');
   const nameEl    = form.querySelector('input');
   const commentEl = form.querySelector('textarea');
@@ -270,6 +270,7 @@ async function sendClaim(sendBtn, load, location, fob, loopsId) {
         location,
         fob,
         loopsId,
+        loopsUrl,
         comment: commentEl.value.trim()
       })
     });
