@@ -226,7 +226,7 @@ h1{font-size:24px;font-weight:500;margin-bottom:4px}
 </div>
 
 <script>
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxEQso-_x8g_aPyQFQZgWFYMdq5BkxwnRdQcvt7bp293BgsN6C0ZMkeIymOItpwZImG/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw9I-8Xdzuc86hzp8pxbfbN6dmsVdGrNU1uq6i8QuuHK9UHSNHE7lZJyJvZB_lgsfzI/exec";
 
 function toggleForm(btn) {
   const form = btn.nextElementSibling;
@@ -262,7 +262,7 @@ async function sendClaim(sendBtn, load, location, fob, loopsId, loopsUrl) {
   try {
     await fetch(SCRIPT_URL, {
       method: 'POST',
-      mode: 'no-cors',
+
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         salesRep: name,
