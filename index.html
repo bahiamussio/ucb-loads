@@ -67,7 +67,7 @@ h1{font-size:24px;font-weight:500;margin-bottom:4px}
 <body>
 <div class="page">
 <div class="flyer">
-  <span class="badge">5 loads available</span>
+  <span class="badge">6 loads available</span>
   <h1>Truckloads available now</h1>
   <p class="subtitle">Click "Claim this load" to notify the sourcing team directly</p>
   <div class="divider"></div>
@@ -152,6 +152,32 @@ h1{font-size:24px;font-weight:500;margin-bottom:4px}
           <label>Comment (optional)</label><textarea placeholder="Customer info, quantity needed..."></textarea>
           <div class="form-row">
             <button class="btn-send" onclick="sendClaim(this,'K&amp;S Recycling','Portland, OR','18.50','3792','https://loops.usedcardboardboxes.com/manage_box_b2bloop.php?id=2952&proc=View&')">Send claim</button>
+            <button class="btn-cancel" onclick="cancelForm(this)">Cancel</button>
+          </div>
+          <div class="msg"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SOUTHEAST -->
+  <div class="region-block">
+    <div class="region-label">📍 Southeast <span class="region-line"></span></div>
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-name">🔥 Rehrig</div>
+        <div class="card-city">Lawrenceville, GA</div>
+        <div class="tag-row"><span class="tag tag-ply">5-ply Octagonal</span><span class="tag tag-fob">FOB $10.50</span></div>
+        <div class="tag-row"><span class="tag tag-units">400 units · 48x40x40 · Lid Top · Full Flap Bottom</span></div>
+        <a class="loops-link" href="https://loops.usedcardboardboxes.com/manage_box_b2bloop.php?id=1867&proc=View&" target="_blank">↗ ID 2535 in Loops</a>
+        <button class="claim-btn" onclick="toggleForm(this)">Claim this load</button>
+        <div class="form-overlay">
+          <label>Your name</label><input type="text" placeholder="e.g. Sarah">
+          <label>Comment (optional)</label><textarea placeholder="Customer info, quantity needed..."></textarea>
+          <div class="form-row">
+            <button class="btn-send" onclick="sendClaim(this,'Rehrig','Lawrenceville, GA','10.50','2535','https://loops.usedcardboardboxes.com/manage_box_b2bloop.php?id=1867&proc=View&')">Send claim</button>
             <button class="btn-cancel" onclick="cancelForm(this)">Cancel</button>
           </div>
           <div class="msg"></div>
