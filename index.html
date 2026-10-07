@@ -6,424 +6,193 @@
 <title>UCB — Truckloads Available Now</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-
-/* ── UCB / Loops brand palette ── */
 :root{
-  --ucb-orange:#E87722;
-  --ucb-orange-dark:#c4621a;
-  --ucb-green:#2E7D32;
-  --ucb-green-hover:#1b5e20;
-  --ucb-nav-bg:#f5f3ee;
-  --ucb-nav-border:#d4c9b0;
-  --ucb-page-bg:#ffffff;
-  --ucb-row-alt:#f2f2f2;
-  --ucb-border:#cccccc;
-  --ucb-text:#000000;
-  --ucb-text-muted:#555555;
-  --ucb-section-header-bg:#E87722;
-  --ucb-section-header-text:#ffffff;
-  --tag-bg:#e8f4ea;
-  --tag-border:#a5d6a7;
-  --tag-fob-bg:#fff3e0;
-  --tag-fob-border:#ffcc80;
-  --tag-units-bg:#f5f5f5;
-  --tag-units-border:#cccccc;
-  --warn-bg:#fff8e1;
-  --warn-border:#ffe082;
+  --surface-0:#f5f4f0;--surface-1:#f0efeb;--surface-2:#ffffff;
+  --border:rgba(11,11,11,0.10);--border-strong:rgba(11,11,11,0.18);
+  --text-primary:#0b0b0b;--text-secondary:#52514e;--text-muted:#898781;
+  --text-accent:#2E7D32;--text-warning:#E87722;
+  --bg-accent:#e8f4ea;--bg-warning:#fff3e0;
+  --ucb-orange:#E87722;--ucb-green:#2E7D32;
 }
-
-/* ── Nav bar (imita UCB B2B) ── */
-.ucb-nav{
-  background:var(--ucb-nav-bg);
-  border-bottom:1px solid var(--ucb-nav-border);
-  padding:6px 16px;
-  display:flex;
-  align-items:center;
-  gap:0;
-  font-family:Arial,Helvetica,sans-serif;
-  font-size:13px;
-  position:sticky;top:0;z-index:100;
+@media(prefers-color-scheme:dark){
+  :root{
+    --surface-0:#111110;--surface-1:#1a1a19;--surface-2:#232321;
+    --border:rgba(255,255,255,0.10);--border-strong:rgba(255,255,255,0.18);
+    --text-primary:#f0efec;--text-secondary:#c3c2b7;--text-muted:#898781;
+    --text-accent:#5DCAA5;--text-warning:#f0a855;
+    --bg-accent:#04342C;--bg-warning:#3a2200;
+  }
 }
-.ucb-logo{
-  display:flex;align-items:center;gap:8px;
-  margin-right:20px;text-decoration:none;
-}
-.ucb-logo-box{
-  width:36px;height:36px;
-  background:#E87722;
-  border-radius:4px;
-  display:flex;align-items:center;justify-content:center;
-  font-weight:900;font-size:11px;color:#fff;
-  letter-spacing:-.5px;line-height:1.1;text-align:center;
-  font-family:Arial,sans-serif;
-}
-.ucb-nav-links{display:flex;gap:0;align-items:center;flex:1;}
-.ucb-nav-links a{
-  color:#000;text-decoration:none;
-  padding:4px 10px;font-size:12px;font-weight:normal;
-  font-family:Arial,Helvetica,sans-serif;
-}
-.ucb-nav-links a:hover{text-decoration:underline;color:var(--ucb-green);}
-.ucb-nav-links .nav-sep{color:#999;padding:0 2px;font-size:11px;}
-.ucb-nav-user{
-  margin-left:auto;font-size:12px;color:#333;
-  font-family:Arial,Helvetica,sans-serif;
-}
-
-/* ── Page ── */
-body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:var(--ucb-page-bg);
-  color:var(--ucb-text);
-  min-height:100vh;
-  font-size:13px;
-}
-.page{max-width:900px;margin:0 auto;padding:20px 16px 40px;}
-
-/* ── Page title ── */
-.page-title{font-size:18px;font-weight:bold;margin-bottom:14px;color:#000;}
-
-/* ── Section header (orange bar, UCB style) ── */
-.section-header{
-  background:var(--ucb-section-header-bg);
-  color:var(--ucb-section-header-text);
-  font-size:13px;font-weight:bold;
-  padding:5px 10px;
-  margin-bottom:0;
-  border:1px solid var(--ucb-orange-dark);
-}
-
-/* ── Table / grid of loads ── */
-.loads-table{
-  width:100%;
-  border-collapse:collapse;
-  border:1px solid var(--ucb-border);
-  margin-bottom:20px;
-  font-size:12px;
-}
-.loads-table th{
-  background:#f0ebe0;
-  border:1px solid var(--ucb-border);
-  padding:4px 8px;
-  text-align:left;
-  font-size:11px;
-  font-weight:bold;
-  color:#333;
-}
-.loads-table td{
-  border:1px solid var(--ucb-border);
-  padding:6px 8px;
-  vertical-align:top;
-}
-.loads-table tr:nth-child(even) td{background:var(--ucb-row-alt);}
-.loads-table tr:nth-child(odd) td{background:#ffffff;}
-.loads-table tr:hover td{background:#fffbe6;}
-
-/* ── Supplier name / link ── */
-.sup-name{font-weight:bold;color:var(--ucb-green);font-size:12px;}
-.sup-city{color:var(--ucb-text-muted);font-size:11px;margin-top:1px;}
-.loops-link{
-  color:var(--ucb-green);text-decoration:none;font-size:11px;
-}
-.loops-link:hover{text-decoration:underline;}
-
-/* ── Tags / pills ── */
-.tag{
-  display:inline-block;font-size:10px;padding:1px 6px;
-  border-radius:3px;margin-right:3px;margin-bottom:2px;
-  border:1px solid;white-space:nowrap;
-}
-.tag-ply{background:var(--tag-bg);border-color:var(--tag-border);color:#1b5e20;}
-.tag-fob{background:var(--tag-fob-bg);border-color:var(--tag-fob-border);color:#e65100;font-weight:bold;}
-.tag-units{background:var(--tag-units-bg);border-color:var(--tag-units-border);color:#333;}
-.tag-warn{background:var(--warn-bg);border-color:var(--warn-border);color:#b71c1c;font-weight:bold;}
-.tag-urgent{background:#fbe9e7;border-color:#ef9a9a;color:#c62828;font-weight:bold;}
-
-/* ── Claim button ── */
-.claim-btn{
-  display:block;width:100%;
-  padding:5px 0;font-size:11px;font-weight:bold;
-  color:#fff;background:var(--ucb-orange);
-  border:1px solid var(--ucb-orange-dark);
-  cursor:pointer;margin-top:6px;
-  font-family:Arial,sans-serif;
-}
-.claim-btn:hover{background:var(--ucb-orange-dark);}
-
-/* ── Claim form ── */
-.form-overlay{display:none;margin-top:8px;background:#fffef8;border:1px solid var(--ucb-border);padding:10px;}
-.form-overlay.open{display:block;}
-.form-overlay label{font-size:11px;color:#333;display:block;margin-bottom:2px;margin-top:6px;}
-.form-overlay label:first-child{margin-top:0;}
-.form-overlay input,.form-overlay textarea{
-  width:100%;font-size:12px;padding:4px 6px;
-  border:1px solid #aaa;background:#fff;
-  color:#000;outline:none;font-family:Arial,sans-serif;
-}
-.form-overlay textarea{resize:vertical;min-height:48px;}
-.form-row{display:flex;gap:6px;margin-top:8px;}
-.btn-send{
-  flex:1;padding:5px 0;font-size:11px;font-weight:bold;
-  color:#fff;background:#1565C0;
-  border:1px solid #0d47a1;cursor:pointer;font-family:Arial,sans-serif;
-}
-.btn-send:hover{background:#0d47a1;}
-.btn-cancel{
-  padding:5px 10px;font-size:11px;color:#333;
-  background:#e0e0e0;border:1px solid #bbb;cursor:pointer;font-family:Arial,sans-serif;
-}
-.btn-cancel:hover{background:#c8c8c8;}
-.msg{font-size:11px;margin-top:6px;padding:4px 8px;display:none;border:1px solid;}
-.msg.success{display:block;background:#e8f5e9;border-color:#a5d6a7;color:#1b5e20;}
-.msg.error{display:block;background:#ffebee;border-color:#ef9a9a;color:#b71c1c;}
-
-/* ── Footer ── */
-.page-footer{
-  border-top:1px solid var(--ucb-border);
-  padding-top:10px;margin-top:4px;
-  font-size:11px;color:var(--ucb-text-muted);
-  display:flex;justify-content:space-between;align-items:center;
-}
-.page-footer a{color:var(--ucb-green);}
-
-/* ── Badge count ── */
-.load-count{
-  display:inline-block;background:var(--ucb-green);
-  color:#fff;font-size:11px;font-weight:bold;
-  padding:2px 8px;border-radius:2px;margin-left:8px;vertical-align:middle;
-}
-
-@media(max-width:600px){
-  .loads-table thead{display:none;}
-  .loads-table tr{display:block;margin-bottom:12px;border:1px solid var(--ucb-border);}
-  .loads-table td{display:block;border:none;border-bottom:1px solid #eee;}
-  .loads-table td:last-child{border-bottom:none;}
-  .ucb-nav-links a{padding:4px 6px;font-size:11px;}
-}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--surface-0);color:var(--text-primary);min-height:100vh;padding:40px 16px}
+.page{max-width:820px;margin:0 auto}
+.flyer{background:var(--surface-2);border:0.5px solid var(--border-strong);border-radius:16px;padding:32px 36px;margin-bottom:24px}
+.badge{display:inline-block;background:var(--ucb-orange);color:#fff;font-size:11px;font-weight:600;padding:3px 12px;border-radius:20px;letter-spacing:.05em;margin-bottom:10px}
+h1{font-size:24px;font-weight:500;margin-bottom:4px}
+.subtitle{font-size:14px;color:var(--text-secondary);margin-bottom:24px}
+.divider{height:.5px;background:var(--border);margin-bottom:24px}
+.region-label{font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--ucb-orange);text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.region-line{flex:1;height:1px;background:var(--ucb-orange);opacity:.3}
+.region-block{margin-bottom:24px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.card{background:var(--surface-1);border:.5px solid var(--border);border-radius:12px;padding:14px 16px}
+.card-name{font-size:13px;font-weight:600;margin-bottom:2px;color:var(--text-primary)}
+.card-city{font-size:12px;color:var(--text-secondary);margin-bottom:10px}
+.tag-row{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:4px}
+.tag{font-size:11px;padding:2px 8px;border-radius:20px}
+.tag-ply{background:var(--bg-accent);color:var(--ucb-green);border:.5px solid #a5d6a7}
+.tag-fob{background:var(--bg-warning);color:var(--ucb-orange);border:.5px solid #ffcc80;font-weight:600}
+.tag-units{background:var(--surface-2);color:var(--text-secondary);border:.5px solid var(--border)}
+.tag-warn{background:#fff8e1;color:#b71c1c;border:.5px solid #ffe082;font-weight:600}
+.loops-link{display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--ucb-green);text-decoration:none;margin-top:8px;margin-bottom:6px}
+.loops-link:hover{text-decoration:underline}
+.claim-btn{margin-top:4px;width:100%;padding:7px 0;font-size:12px;font-weight:600;color:#fff;background:var(--ucb-orange);border:none;border-radius:8px;cursor:pointer;transition:background .15s}
+.claim-btn:hover{background:#c4621a}
+.form-overlay{display:none;margin-top:10px;background:var(--surface-2);border:.5px solid var(--border-strong);border-radius:10px;padding:12px}
+.form-overlay.open{display:block}
+.form-overlay label{font-size:11px;color:var(--text-secondary);display:block;margin-bottom:3px;margin-top:8px}
+.form-overlay label:first-child{margin-top:0}
+.form-overlay input,.form-overlay textarea{width:100%;font-size:12px;padding:6px 8px;border:.5px solid var(--border-strong);border-radius:6px;background:var(--surface-1);color:var(--text-primary);outline:none;font-family:inherit}
+.form-overlay textarea{resize:vertical;min-height:52px}
+.form-row{display:flex;gap:6px;margin-top:10px}
+.btn-send{flex:1;padding:7px 0;font-size:12px;font-weight:600;color:#fff;background:var(--ucb-green);border:none;border-radius:7px;cursor:pointer}
+.btn-send:hover{background:#1b5e20}
+.btn-cancel{padding:7px 12px;font-size:12px;color:var(--text-secondary);background:transparent;border:.5px solid var(--border-strong);border-radius:7px;cursor:pointer}
+.msg{font-size:12px;margin-top:8px;padding:6px 10px;border-radius:6px;display:none}
+.msg.success{display:block;background:var(--bg-accent);color:var(--ucb-green)}
+.msg.error{display:block;background:#FCEBEB;color:#A32D2D}
+.footer{margin-top:24px;padding-top:16px;border-top:.5px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--text-muted)}
+.cta{font-weight:500;color:var(--ucb-green)}
 </style>
 </head>
 <body>
-
-<!-- NAV BAR -->
-<nav class="ucb-nav">
-  <a class="ucb-logo" href="https://loops.usedcardboardboxes.com" target="_blank">
-    <div class="ucb-logo-box">UCB</div>
-  </a>
-  <div class="ucb-nav-links">
-    <a href="https://loops.usedcardboardboxes.com" target="_blank">LOOPS</a>
-  </div>
-  <div class="ucb-nav-user">Catalina Mussio</div>
-</nav>
-
 <div class="page">
-  <p class="page-title">
-    Truckloads Available Now
-    <span class="load-count">5 loads</span>
-  </p>
-  <p style="font-size:12px;color:#555;margin-bottom:16px;">Click <strong>Claim this load</strong> to notify the sourcing team directly.</p>
+<div class="flyer">
+  <span class="badge">5 loads available</span>
+  <h1>Truckloads available now</h1>
+  <p class="subtitle">Click "Claim this load" to notify the sourcing team directly</p>
+  <div class="divider"></div>
 
   <!-- SOUTH CENTRAL -->
-  <div class="section-header">📍 South Central</div>
-  <table class="loads-table">
-    <thead>
-      <tr>
-        <th>Supplier</th>
-        <th>Specs</th>
-        <th>FOB&nbsp;/&nbsp;Units</th>
-        <th>Loops</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
+  <div class="region-block">
+    <div class="region-label">📍 South Central <span class="region-line"></span></div>
+    <div class="cards">
 
-      <!-- Scrap Management -->
-      <tr>
-        <td>
-          <div class="sup-name">🔥 Scrap Management</div>
-          <div class="sup-city">Houston, TX</div>
-        </td>
-        <td>
-          <span class="tag tag-ply">5-ply Gaylord</span>
-          <span class="tag tag-units">Mixed · No top · Slip sheet bottom · Resin</span>
-        </td>
-        <td>
-          <span class="tag tag-fob">FOB $14.50</span><br>
-          <span class="tag tag-units">~500 units</span>
-        </td>
-        <td><a class="loops-link" href="https://loops.usedcardboardboxes.com/manage_box_b2bloop.php?id=7106&proc=View&" target="_blank">↗ ID 7946</a></td>
-        <td>
-          <button class="claim-btn" onclick="toggleForm(this)">Claim this load</button>
-          <div class="form-overlay">
-            <label>Your name</label><input type="text" placeholder="e.g. Sarah">
-            <label>Comment (optional)</label><textarea placeholder="Customer info, quantity needed..."></textarea>
-            <div class="form-row">
-              <button class="btn-send" onclick="sendClaim(this,'Scrap Management','Houston, TX','14.50','7946','https://loops.usedcardboardboxes.com/manage_box_b2bloop.php?id=7106&proc=View&')">Send claim</button>
-              <button class="btn-cancel" onclick="cancelForm(this)">Cancel</button>
-            </div>
-            <div class="msg"></div>
+      <div class="card">
+        <div class="card-name">🔥 Scrap Management</div>
+        <div class="card-city">Houston, TX</div>
+        <div class="tag-row"><span class="tag tag-ply">5-ply Gaylord</span><span class="tag tag-fob">FOB $14.50</span></div>
+        <div class="tag-row"><span class="tag tag-units">~500 units · Mixed · No top · Slip sheet bottom</span></div>
+        <a class="loops-link" href="https://loops.usedcardboardboxes.com/manage_box_b2bloop.php?id=7106&proc=View&" target="_blank">↗ ID 7946 in Loops</a>
+        <button class="claim-btn" onclick="toggleForm(this)">Claim this load</button>
+        <div class="form-overlay">
+          <label>Your name</label><input type="text" placeholder="e.g. Sarah">
+          <label>Comment (optional)</label><textarea placeholder="Customer info, quantity needed..."></textarea>
+          <div class="form-row">
+            <button class="btn-send" onclick="sendClaim(this,'Scrap Management','Houston, TX','14.50','7946','https://loops.usedcardboardboxes.com/manage_box_b2bloop.php?id=7106&proc=View&')">Send claim</button>
+            <button class="btn-cancel" onclick="cancelForm(this)">Cancel</button>
           </div>
-        </td>
-      </tr>
+          <div class="msg"></div>
+        </div>
+      </div>
 
-      <!-- G3 Scrap Metals -->
-      <tr>
-        <td>
-          <div class="sup-name">🔥 G3 Scrap Metals</div>
-          <div class="sup-city">Weslaco, TX</div>
-        </td>
-        <td>
-          <span class="tag tag-ply">6-ply HPT</span>
-          <span class="tag tag-units">Rectangular · Full flap</span>
-        </td>
-        <td>
-          <span class="tag tag-fob">FOB $15.50</span><br>
-          <span class="tag tag-units">444 units</span>
-        </td>
-        <td><a class="loops-link" href="https://loops.usedcardboardboxes.com/manage_box_b2bloop.php?id=7117&proc=View&" target="_blank">↗ ID 7957</a></td>
-        <td>
-          <button class="claim-btn" onclick="toggleForm(this)">Claim this load</button>
-          <div class="form-overlay">
-            <label>Your name</label><input type="text" placeholder="e.g. Sarah">
-            <label>Comment (optional)</label><textarea placeholder="Customer info, quantity needed..."></textarea>
-            <div class="form-row">
-              <button class="btn-send" onclick="sendClaim(this,'G3 Scrap Metals','Weslaco, TX','15.50','7957','https://loops.usedcardboardboxes.com/manage_box_b2bloop.php?id=7117&proc=View&')">Send claim</button>
-              <button class="btn-cancel" onclick="cancelForm(this)">Cancel</button>
-            </div>
-            <div class="msg"></div>
+      <div class="card">
+        <div class="card-name">🔥 G3 Scrap Metals</div>
+        <div class="card-city">Weslaco, TX</div>
+        <div class="tag-row"><span class="tag tag-ply">6-ply HPT</span><span class="tag tag-fob">FOB $15.50</span></div>
+        <div class="tag-row"><span class="tag tag-units">444 units · Rectangular · Full flap</span></div>
+        <a class="loops-link" href="https://loops.usedcardboardboxes.com/manage_box_b2bloop.php?id=7117&proc=View&" target="_blank">↗ ID 7957 in Loops</a>
+        <button class="claim-btn" onclick="toggleForm(this)">Claim this load</button>
+        <div class="form-overlay">
+          <label>Your name</label><input type="text" placeholder="e.g. Sarah">
+          <label>Comment (optional)</label><textarea placeholder="Customer info, quantity needed..."></textarea>
+          <div class="form-row">
+            <button class="btn-send" onclick="sendClaim(this,'G3 Scrap Metals','Weslaco, TX','15.50','7957','https://loops.usedcardboardboxes.com/manage_box_b2bloop.php?id=7117&proc=View&')">Send claim</button>
+            <button class="btn-cancel" onclick="cancelForm(this)">Cancel</button>
           </div>
-        </td>
-      </tr>
+          <div class="msg"></div>
+        </div>
+      </div>
 
-    </tbody>
-  </table>
+    </div>
+  </div>
 
   <!-- MIDWEST -->
-  <div class="section-header">📍 Midwest</div>
-  <table class="loads-table">
-    <thead>
-      <tr>
-        <th>Supplier</th>
-        <th>Specs</th>
-        <th>FOB&nbsp;/&nbsp;Units</th>
-        <th>Loops</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
+  <div class="region-block">
+    <div class="region-label">📍 Midwest <span class="region-line"></span></div>
+    <div class="cards">
 
-      <!-- Dungarees -->
-      <tr>
-        <td>
-          <div class="sup-name">Dungarees</div>
-          <div class="sup-city">Columbia, MO</div>
-        </td>
-        <td>
-          <span class="tag tag-ply">1-ply RSC</span>
-          <span class="tag tag-units">24x16x11 · 1-use · Full TL (~11K) in 2 weeks</span>
-        </td>
-        <td>
-          <span class="tag tag-fob">FOB $0.45</span><br>
-          <span class="tag tag-units">~5,500 units</span>
-        </td>
-        <td><a class="loops-link" href="https://loops.usedcardboardboxes.com/manage_box_b2bloop.php?id=3365&proc=Edit&" target="_blank">↗ ID 4205</a></td>
-        <td>
-          <button class="claim-btn" onclick="toggleForm(this)">Claim this load</button>
-          <div class="form-overlay">
-            <label>Your name</label><input type="text" placeholder="e.g. Sarah">
-            <label>Comment (optional)</label><textarea placeholder="Customer info, quantity needed..."></textarea>
-            <div class="form-row">
-              <button class="btn-send" onclick="sendClaim(this,'Dungarees','Columbia, MO','0.45','4205','https://loops.usedcardboardboxes.com/manage_box_b2bloop.php?id=3365&proc=Edit&')">Send claim</button>
-              <button class="btn-cancel" onclick="cancelForm(this)">Cancel</button>
-            </div>
-            <div class="msg"></div>
+      <div class="card">
+        <div class="card-name">Dungarees</div>
+        <div class="card-city">Columbia, MO</div>
+        <div class="tag-row"><span class="tag tag-ply">1-ply RSC</span><span class="tag tag-fob">FOB $0.45</span></div>
+        <div class="tag-row"><span class="tag tag-units">~5,500 units · 24x16x11 · Full TL (~11K) in 2 weeks</span></div>
+        <a class="loops-link" href="https://loops.usedcardboardboxes.com/manage_box_b2bloop.php?id=3365&proc=Edit&" target="_blank">↗ ID 4205 in Loops</a>
+        <button class="claim-btn" onclick="toggleForm(this)">Claim this load</button>
+        <div class="form-overlay">
+          <label>Your name</label><input type="text" placeholder="e.g. Sarah">
+          <label>Comment (optional)</label><textarea placeholder="Customer info, quantity needed..."></textarea>
+          <div class="form-row">
+            <button class="btn-send" onclick="sendClaim(this,'Dungarees','Columbia, MO','0.45','4205','https://loops.usedcardboardboxes.com/manage_box_b2bloop.php?id=3365&proc=Edit&')">Send claim</button>
+            <button class="btn-cancel" onclick="cancelForm(this)">Cancel</button>
           </div>
-        </td>
-      </tr>
+          <div class="msg"></div>
+        </div>
+      </div>
 
-      <!-- K&S Recycling -->
-      <tr>
-        <td>
-          <div class="sup-name">🔥 K&amp;S Recycling</div>
-          <div class="sup-city">Portland, OR</div>
-        </td>
-        <td>
-          <span class="tag tag-ply">6-ply HPT</span>
-          <span class="tag tag-units">48x40x41 · Full flap</span><br>
-          <span class="tag tag-warn">⚠️ No WA/OR buyers</span>
-        </td>
-        <td>
-          <span class="tag tag-fob">FOB $18.50</span><br>
-          <span class="tag tag-units">600 units</span>
-        </td>
-        <td><a class="loops-link" href="https://loops.usedcardboardboxes.com/manage_box_b2bloop.php?id=2952&proc=View&" target="_blank">↗ ID 3792</a></td>
-        <td>
-          <button class="claim-btn" onclick="toggleForm(this)">Claim this load</button>
-          <div class="form-overlay">
-            <label>Your name</label><input type="text" placeholder="e.g. Sarah">
-            <label>Comment (optional)</label><textarea placeholder="Customer info, quantity needed..."></textarea>
-            <div class="form-row">
-              <button class="btn-send" onclick="sendClaim(this,'K&amp;S Recycling','Portland, OR','18.50','3792','https://loops.usedcardboardboxes.com/manage_box_b2bloop.php?id=2952&proc=View&')">Send claim</button>
-              <button class="btn-cancel" onclick="cancelForm(this)">Cancel</button>
-            </div>
-            <div class="msg"></div>
+      <div class="card">
+        <div class="card-name">🔥 K&amp;S Recycling</div>
+        <div class="card-city">Portland, OR</div>
+        <div class="tag-row"><span class="tag tag-ply">6-ply HPT-41</span><span class="tag tag-fob">FOB $18.50</span></div>
+        <div class="tag-row"><span class="tag tag-units">600 units · 48x40x41 · Full flap</span></div>
+        <div class="tag-row"><span class="tag tag-warn">⚠️ No WA/OR buyers · Prepayment</span></div>
+        <a class="loops-link" href="https://loops.usedcardboardboxes.com/manage_box_b2bloop.php?id=2952&proc=View&" target="_blank">↗ ID 3792 in Loops</a>
+        <button class="claim-btn" onclick="toggleForm(this)">Claim this load</button>
+        <div class="form-overlay">
+          <label>Your name</label><input type="text" placeholder="e.g. Sarah">
+          <label>Comment (optional)</label><textarea placeholder="Customer info, quantity needed..."></textarea>
+          <div class="form-row">
+            <button class="btn-send" onclick="sendClaim(this,'K&amp;S Recycling','Portland, OR','18.50','3792','https://loops.usedcardboardboxes.com/manage_box_b2bloop.php?id=2952&proc=View&')">Send claim</button>
+            <button class="btn-cancel" onclick="cancelForm(this)">Cancel</button>
           </div>
-        </td>
-      </tr>
+          <div class="msg"></div>
+        </div>
+      </div>
 
-    </tbody>
-  </table>
+    </div>
+  </div>
 
   <!-- WEST COAST -->
-  <div class="section-header">📍 West Coast</div>
-  <table class="loads-table">
-    <thead>
-      <tr>
-        <th>Supplier</th>
-        <th>Specs</th>
-        <th>FOB&nbsp;/&nbsp;Units</th>
-        <th>Loops</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
+  <div class="region-block">
+    <div class="region-label">📍 West Coast <span class="region-line"></span></div>
+    <div class="cards">
 
-      <!-- GreenGate Fresh -->
-      <tr>
-        <td>
-          <div class="sup-name">🔥 GreenGate Fresh</div>
-          <div class="sup-city">Salinas, CA</div>
-        </td>
-        <td>
-          <span class="tag tag-ply">3-ply</span>
-          <span class="tag tag-units">Octagonal · Full flap · Produce</span><br>
-          <span class="tag tag-warn">⏰ Season ends 11/6</span>
-        </td>
-        <td>
-          <span class="tag tag-fob">FOB $8.25</span><br>
-          <span class="tag tag-units">668 units</span>
-        </td>
-        <td><a class="loops-link" href="https://loops.usedcardboardboxes.com/manage_box_b2bloop.php?id=7033&proc=View&" target="_blank">↗ ID 7873</a></td>
-        <td>
-          <button class="claim-btn" onclick="toggleForm(this)">Claim this load</button>
-          <div class="form-overlay">
-            <label>Your name</label><input type="text" placeholder="e.g. Sarah">
-            <label>Comment (optional)</label><textarea placeholder="Customer info, quantity needed..."></textarea>
-            <div class="form-row">
-              <button class="btn-send" onclick="sendClaim(this,'GreenGate Fresh','Salinas, CA','8.25','7873','https://loops.usedcardboardboxes.com/manage_box_b2bloop.php?id=7033&proc=View&')">Send claim</button>
-              <button class="btn-cancel" onclick="cancelForm(this)">Cancel</button>
-            </div>
-            <div class="msg"></div>
+      <div class="card">
+        <div class="card-name">🔥 GreenGate Fresh</div>
+        <div class="card-city">Salinas, CA</div>
+        <div class="tag-row"><span class="tag tag-ply">3-ply</span><span class="tag tag-fob">FOB $8.25</span></div>
+        <div class="tag-row"><span class="tag tag-units">668 units · Octagonal · Produce</span></div>
+        <div class="tag-row"><span class="tag tag-warn">⏰ Season ends 11/6</span></div>
+        <a class="loops-link" href="https://loops.usedcardboardboxes.com/manage_box_b2bloop.php?id=7033&proc=View&" target="_blank">↗ ID 7873 in Loops</a>
+        <button class="claim-btn" onclick="toggleForm(this)">Claim this load</button>
+        <div class="form-overlay">
+          <label>Your name</label><input type="text" placeholder="e.g. Sarah">
+          <label>Comment (optional)</label><textarea placeholder="Customer info, quantity needed..."></textarea>
+          <div class="form-row">
+            <button class="btn-send" onclick="sendClaim(this,'GreenGate Fresh','Salinas, CA','8.25','7873','https://loops.usedcardboardboxes.com/manage_box_b2bloop.php?id=7033&proc=View&')">Send claim</button>
+            <button class="btn-cancel" onclick="cancelForm(this)">Cancel</button>
           </div>
-        </td>
-      </tr>
+          <div class="msg"></div>
+        </div>
+      </div>
 
-    </tbody>
-  </table>
-
-  <div class="page-footer">
-    <span>Updated Oct 7, 2026 &nbsp;·&nbsp; <a href="https://loops.usedcardboardboxes.com" target="_blank">loops.usedcardboardboxes.com</a></span>
-    <span>Questions? DM Cati or CG 🚛</span>
+    </div>
   </div>
+
+  <div class="footer">
+    <span>Updated Oct 7, 2026 &nbsp;·&nbsp; <a href="https://loops.usedcardboardboxes.com" target="_blank" style="color:var(--ucb-green)">loops.usedcardboardboxes.com</a></span>
+    <span class="cta">Questions? DM Cati or CG 🚛</span>
+  </div>
+</div>
 </div>
 
 <script>
